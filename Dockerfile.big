@@ -1,0 +1,15 @@
+FROM golang:1.7.4-alpine
+
+ENV SOURCES /go/src/cloud-native-go/
+
+COPY . ${SOURCES}
+
+WORKDIR ${SOURCES}
+
+RUN CGO_ENABLED=0 go install
+
+ENV PORT 8888
+
+EXPOSE 8888
+
+ENTRYPOINT cloud-native-go
